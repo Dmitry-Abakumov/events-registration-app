@@ -1,0 +1,12 @@
+{
+  "navbarLinks": [
+    {
+      "path": "/",
+      "label": "Home"
+    },
+    {
+      "path": "/events",
+      "label": "Events"
+    }
+  ]
+}
