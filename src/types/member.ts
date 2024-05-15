@@ -3,5 +3,5 @@ export type MemberType = {
   email: string;
   dateOfBirth: string;
   referralSource: "Social media" | "Friends" | "Found myself";
-  _id: string;
+  _id?: string;
 };
