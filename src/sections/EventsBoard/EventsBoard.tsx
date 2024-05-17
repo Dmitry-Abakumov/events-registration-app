@@ -47,7 +47,7 @@ export const EventsBoard = () => {
         <ul
           ref={eventsListRef}
           id="eventsList"
-          className="flex flex-wrap gap-6 w-full"
+          className="flex flex-wrap gap-6 justify-center"
         >
           {events?.map((ev) => (
             <Event key={ev._id} {...ev} />

@@ -34,21 +34,21 @@ export const EventRegistrationForm = () => {
         <Form className="flex flex-col gap-2 items-center">
           <TextField {...fullName} />
           <ErrorMessage
-            className="text-red text-xs mt-1"
+            className="text-red-600 text-xs mt-1"
             component="p"
             name={fullName.name}
           />
 
           <TextField {...email} />
           <ErrorMessage
-            className="text-red text-xs mt-1"
+            className="text-red-600 text-xs mt-1"
             component="p"
             name={email.name}
           />
 
           <TextField {...dateOfBirth} />
           <ErrorMessage
-            className="text-red text-xs mt-1"
+            className="text-red-600 text-xs mt-1"
             component="p"
             name={dateOfBirth.name}
           />
@@ -57,6 +57,7 @@ export const EventRegistrationForm = () => {
             <label className="flex items-center gap-1">
               {socialMedia}
               <Field
+                className="cursor-pointer"
                 {...referralSource}
                 value={socialMedia}
                 label={socialMedia}
@@ -65,12 +66,18 @@ export const EventRegistrationForm = () => {
 
             <label className="flex items-center gap-1">
               {friends}
-              <Field {...referralSource} value={friends} label={friends} />
+              <Field
+                className="cursor-pointer"
+                {...referralSource}
+                value={friends}
+                label={friends}
+              />
             </label>
 
             <label className="flex items-center gap-1">
               {foundMyself}
               <Field
+                className="cursor-pointer"
                 {...referralSource}
                 value={foundMyself}
                 label={foundMyself}
