@@ -12,7 +12,7 @@ export const EventMembers: React.FC<EventMembersProps> = async ({
   return (
     <section>
       <div className="container">
-        <ul>
+        <ul className="flex flex-wrap gap-6 w-full">
           {eventMembers?.map((member) => (
             <Member key={member._id} {...member} />
           ))}

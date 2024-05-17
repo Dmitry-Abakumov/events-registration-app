@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import { TextField } from "@/components/ui/TextField/TextField";
 
@@ -10,10 +10,10 @@ import { onSubmit } from "./onSubmit";
 import { initialValues } from "./initialValues";
 import { fields } from "./fields";
 
+import { eventRegistrationSchema } from "./validationSchema";
+
 export const EventRegistrationForm = () => {
   const { id } = useParams<{ id: string }>();
-
-  console.log(id);
 
   const { fullName, email, dateOfBirth, referralSource } = fields;
   const {
@@ -23,6 +23,7 @@ export const EventRegistrationForm = () => {
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={eventRegistrationSchema}
       onSubmit={async (values, { resetForm }) => {
         await onSubmit(values, id);
 
@@ -30,10 +31,27 @@ export const EventRegistrationForm = () => {
       }}
     >
       {({ errors }) => (
-        <Form className="flex flex-col gap-2">
+        <Form className="flex flex-col gap-2 items-center">
           <TextField {...fullName} />
+          <ErrorMessage
+            className="text-red text-xs mt-1"
+            component="p"
+            name={fullName.name}
+          />
+
           <TextField {...email} />
+          <ErrorMessage
+            className="text-red text-xs mt-1"
+            component="p"
+            name={email.name}
+          />
+
           <TextField {...dateOfBirth} />
+          <ErrorMessage
+            className="text-red text-xs mt-1"
+            component="p"
+            name={dateOfBirth.name}
+          />
 
           <div className="flex gap-4 items-center">
             <label className="flex items-center gap-1">
@@ -60,7 +78,12 @@ export const EventRegistrationForm = () => {
             </label>
           </div>
 
-          <button type="submit">Register</button>
+          <button
+            className="border-solid border-accent border-2 rounded-[5px] py-1 px-2 w-[150px]"
+            type="submit"
+          >
+            Register
+          </button>
         </Form>
       )}
     </Formik>

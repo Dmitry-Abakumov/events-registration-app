@@ -4,9 +4,12 @@ import { MemberType } from "@/types";
 
 export const registerEventMember = async (id: string, body: MemberType) => {
   try {
-    await axios.post(`http://localhost:3001/api/members/event/${id}`, {
-      ...body,
-    });
+    await axios.post(
+      `https://events-registration-app-server.onrender.com/api/members/event/${id}`,
+      {
+        ...body,
+      }
+    );
   } catch (err) {
     console.log(err);
   }
@@ -15,7 +18,7 @@ export const registerEventMember = async (id: string, body: MemberType) => {
 export const getEventMembers = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:3001/api/members/event/${id}`
+      `https://events-registration-app-server.onrender.com/api/members/event/${id}`
     );
 
     return data as MemberType[];

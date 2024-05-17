@@ -1,16 +1,55 @@
+"use client";
+
+import { useEffect, useState, useRef, LegacyRef } from "react";
+import debounce from "lodash.debounce";
+
 import { Event } from "@/components/ui";
+
+import { scrollToNextPageOnLoad, isUserReachedBottom } from "@/utils";
 
 import { getAllEvents } from "@/services/events-api";
 
-import css from "./EventBoard.module.css";
+import { EventType } from "@/types";
 
-export const EventsBoard = async () => {
-  const events = await getAllEvents();
+export const EventsBoard = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+  const [events, setEvents] = useState<EventType[]>([]);
+  const eventsListRef = useRef<HTMLUListElement>(null);
+
+  const handleScroll = () => {
+    if (isUserReachedBottom()) {
+      setPageNumber((prev) => (prev += 1));
+    }
+  };
+
+  useEffect(() => {
+    console.dir(eventsListRef?.current);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const evs = (await getAllEvents(pageNumber)) as EventType[];
+
+      setEvents((prev) => [...prev, ...evs]);
+    })();
+
+    scrollToNextPageOnLoad(
+      pageNumber,
+      eventsListRef?.current as HTMLUListElement
+    );
+  }, [pageNumber]);
 
   return (
     <section>
       <div className="container">
-        <ul className="flex flex-wrap gap-6 w-full">
+        <ul
+          ref={eventsListRef}
+          id="eventsList"
+          className="flex flex-wrap gap-6 w-full"
+        >
           {events?.map((ev) => (
             <Event key={ev._id} {...ev} />
           ))}
