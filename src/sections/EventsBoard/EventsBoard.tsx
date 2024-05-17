@@ -42,7 +42,7 @@ export const EventsBoard = () => {
   }, [pageNumber]);
 
   return (
-    <section>
+    <section className="h-[800px]">
       <div className="container">
         <ul
           ref={eventsListRef}
