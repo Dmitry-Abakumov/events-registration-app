@@ -11,7 +11,6 @@ Here are: https://events-registration-app-sepia.vercel.app/
 3. registration member of event on the separate page;
 4. form validation;
 5. dynamic routes;
-6. toast messages;
-7. automatic loading of events when user reaches the end of the page.
+6. automatic loading of events when user reaches the end of the page.
 
 Used technologies:TypeScript, Next.js, TailwindCSS, Formik and Yup.

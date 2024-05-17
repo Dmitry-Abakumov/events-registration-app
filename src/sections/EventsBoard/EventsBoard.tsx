@@ -23,7 +23,6 @@ export const EventsBoard = () => {
   };
 
   useEffect(() => {
-    console.dir(eventsListRef?.current);
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);

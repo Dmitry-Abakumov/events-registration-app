@@ -3,5 +3,6 @@ export const fields = {
     name: "filter",
     type: "text",
     placeholder: "Filter",
+    label: "Filter",
   },
 };
